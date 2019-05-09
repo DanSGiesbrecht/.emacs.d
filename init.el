@@ -11,6 +11,9 @@
 (eval-when-compile (require 'use-package))
 
 
+;; add line numbers globally
+(global-linum-mode t)
+
 ;; modes
 ;; vim keymaps/functionality
 (use-package evil
