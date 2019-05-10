@@ -29,6 +29,9 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
+;; navigate windows easily
+(windmove-default-keybindings 'meta)
+
 ;; don't ring the annoying error bell
 (setq ring-bell-function 'ignore)
 
