@@ -30,7 +30,7 @@
 (scroll-bar-mode -1)
 
 ;; navigate windows easily
-(windmove-default-keybindings 'meta)
+(windmove-default-keybindings)
 
 ;; don't ring the annoying error bell
 (setq ring-bell-function 'ignore)
@@ -71,15 +71,22 @@
   :ensure t
   :defer t
   :mode (("\\.org$" . org-mode))
+  :init
+  ;; resolve windmove conflicts with org-mode: shift+arrows
+  (setq org-replace-disputed-keys t)
   :config
-  (setq org-log-done 'time))
+  (setq org-log-done 'time)
+  (setq org-hide-emphasis-markers t)
+  (font-lock-add-keywords 'org-mode
+			'(("^ *\\([-]\\) "
+			   (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
 
 ;; powerline
 (use-package powerline
   :ensure t
   :config
-  (powerline-center-evil-theme))
-(add-hook 'after-init-hook 'powerline-reset)
+  (powerline-center-evil-theme)
+  (add-hook 'after-init-hook 'powerline-reset))
 
 ;;--------------------------------------------------------------------------------
 
@@ -96,13 +103,7 @@
   :config
   (load-theme 'monokai-alt t))
 
-;; org mode mods
-(setq org-hide-emphasis-markers t)
-
-(font-lock-add-keywords 'org-mode
-			'(("^ *\\([-]\\) "
-			   (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
+;; org-mode beautification
 (use-package org-bullets
   :ensure t
   :commands (org-bullets-mode)
