@@ -1,3 +1,8 @@
+;; INIT.EL - EMACS INITIALIZATION FILE
+
+;;--------------------------------------------------------------------------------
+
+;; add package archives
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
@@ -5,6 +10,7 @@
 	     '("org" . "http://http://orgmode.org/elpa/") t)
 (package-initialize)
 
+;; bootstrap <use-package>
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -14,13 +20,14 @@
 
 ;;--------------------------------------------------------------------------------
 
-;; general preferences
-;; don't show startup
+;; GENERAL PREFERENCES
+
+;; don't show startup prompt
 (setq inhibit-startup-screen t)
 
 ;; don't show toolbar/scrollbar
 (tool-bar-mode -1)
-;;(scroll-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;; don't ring the annoying error bell
 (setq ring-bell-function 'ignore)
@@ -48,12 +55,21 @@
 
 ;;--------------------------------------------------------------------------------
 
-;; modes
+;; MODES
+
 ;; vim keymaps/functionality
 (use-package evil
   :ensure t
   :config
   (evil-mode 1))
+
+;; org mode
+(use-package org
+  :ensure t
+  :defer t
+  :mode (("\\.org$" . org-mode))
+  :config
+  (setq org-log-done 'time))
 
 ;; powerline
 (use-package powerline
@@ -63,6 +79,8 @@
 (add-hook 'after-init-hook 'powerline-reset)
 
 ;;--------------------------------------------------------------------------------
+
+;; THEMES AND SYNTAX HIGHLIGHTING
 
 ;; bind modes to filetypes
 (add-to-list 'auto-mode-alist '("\\.dcm$" . text-mode))
