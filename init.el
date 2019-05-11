@@ -169,11 +169,17 @@
 ;;(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 ;; themes
-(use-package monokai-alt-theme
+;;(use-package monokai-alt-theme
+;;  :ensure t
+;;  :load-path "themes"
+;;  :config
+;;  (load-theme 'monokai-alt t))
+
+(use-package soothe-theme
   :ensure t
   :load-path "themes"
   :config
-  (load-theme 'monokai-alt t))
+  (load-theme 'soothe t))
 
 ;; org-mode beautification
 (use-package org-bullets
