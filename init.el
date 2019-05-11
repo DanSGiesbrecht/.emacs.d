@@ -70,7 +70,7 @@
 (use-package org
   :ensure t
   :defer t
-  :mode ("\\.org$" . org-mode)
+  :mode (("\\.org$" . org-mode))
   :init
   ;; resolve windmove conflicts with org-mode: shift+arrows
   (setq org-replace-disputed-keys t)
@@ -85,9 +85,25 @@
 (use-package js2-mode
   :ensure t
   :defer t
-  :mode "\\.js\\'"
+  :mode (("\\.js$" . js2-mode))
   :init
   (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
+
+;; html
+(use-package web-mode
+  :mode (("\\.html?" . web-mode))
+  :init
+  (setq web-mode-script-padding 2)
+  (setq web-mode-style-padding 2)
+  (setq web-mode-comment-style 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2))
+
+;; css
+(setq css-indent-level 2)
+(setq css-indent-offset 2)
+(use-package rainbow-mode
+  :hook (css-mode))
 
 ;; powerline
 (use-package powerline
