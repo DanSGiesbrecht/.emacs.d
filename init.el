@@ -70,7 +70,7 @@
 (use-package org
   :ensure t
   :defer t
-  :mode (("\\.org$" . org-mode))
+  :mode ("\\.org$" . org-mode)
   :init
   ;; resolve windmove conflicts with org-mode: shift+arrows
   (setq org-replace-disputed-keys t)
@@ -80,6 +80,14 @@
   (font-lock-add-keywords 'org-mode
 			'(("^ *\\([-]\\) "
 			   (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
+
+;; js2-mode
+(use-package js2-mode
+  :ensure t
+  :defer t
+  :mode "\\.js\\'"
+  :init
+  (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
 
 ;; powerline
 (use-package powerline
