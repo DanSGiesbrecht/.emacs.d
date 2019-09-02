@@ -91,7 +91,7 @@
 
 ;; html
 (use-package web-mode
-  :mode (("\\.html?" . web-mode))
+  :mode "\\.\\(html\\|ejs\\)\\'"
   :init
   (setq web-mode-script-padding 2)
   (setq web-mode-style-padding 2)
