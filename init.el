@@ -10,6 +10,9 @@
 	     '("org" . "http://http://orgmode.org/elpa/") t)
 (package-initialize)
 
+;; Fix this bug: https://github.com/bbatsov/prelude/issues/1225
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 ;; bootstrap <use-package>
 
 (unless (package-installed-p 'use-package)
@@ -91,6 +94,7 @@
 
 ;; html
 (use-package web-mode
+  :ensure t
   :mode "\\.\\(html\\|ejs\\)\\'"
   :init
   (setq web-mode-script-padding 2)
